@@ -640,7 +640,8 @@ else
   live_xt zlib "${ZLIB_HASH}"
 fi
 
-if [ "${_BRANCH#*pico*}" = "${_BRANCH}" ] && \
+if [ "${_BRANCH#*fnx*}" = "${_BRANCH}" ] && \
+   [ "${_BRANCH#*pico*}" = "${_BRANCH}" ] && \
    [ "${_BRANCH#*nano*}" = "${_BRANCH}" ] && \
    [ "${_BRANCH#*micro*}" = "${_BRANCH}" ] && \
    [ "${_BRANCH#*mini*}" = "${_BRANCH}" ]; then
@@ -696,7 +697,8 @@ if [ "${_BRANCH#*mbedtls*}" != "${_BRANCH}" ]; then
   live_xt mbedtls "${MBEDTLS_HASH}"
 fi
 
-if [ "${_BRANCH#*pico*}" = "${_BRANCH}" ] && \
+if [ "${_BRANCH#*fnx*}" = "${_BRANCH}" ] && \
+   [ "${_BRANCH#*pico*}" = "${_BRANCH}" ] && \
    [ "${_BRANCH#*nano*}" = "${_BRANCH}" ] && \
    [ "${_BRANCH#*micro*}" = "${_BRANCH}" ]; then
   live_dl gsasl "${GSASL_VER_}"
@@ -730,7 +732,8 @@ if [ "${_BRANCH#*pico*}" = "${_BRANCH}" ] && \
   need_cacert=1
 fi
 
-if [ "${_BRANCH#*pico*}" = "${_BRANCH}" ] && \
+if [ "${_BRANCH#*fnx*}" = "${_BRANCH}" ] && \
+   [ "${_BRANCH#*pico*}" = "${_BRANCH}" ] && \
    [ "${_BRANCH#*nano*}" = "${_BRANCH}" ] && \
    [ "${_BRANCH#*micro*}" = "${_BRANCH}" ]; then
   if [ "${_BRANCH#*wolfssh*}" != "${_BRANCH}" ]; then
