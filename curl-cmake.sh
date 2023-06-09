@@ -88,8 +88,7 @@ _VER="$1"
       options="${options} -DENABLE_DEBUG=ON"
     fi
 
-    if [ ! "${_BRANCH#*fnx*}" = "${_BRANCH}" ] || \
-       [ ! "${_BRANCH#*pico*}" = "${_BRANCH}" ] || \
+    if [ ! "${_BRANCH#*pico*}" = "${_BRANCH}" ] || \
        [ ! "${_BRANCH#*nano*}" = "${_BRANCH}" ]; then
       options="${options} -DCURL_DISABLE_ALTSVC=ON"
     fi

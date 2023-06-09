@@ -65,8 +65,7 @@ _VER="$1"
     LDFLAGS="${LDFLAGS} -Wl,--high-entropy-va"
   fi
 
-  if [ ! "${_BRANCH#*fnx*}" = "${_BRANCH}" ] || \
-     [ ! "${_BRANCH#*pico*}" = "${_BRANCH}" ] || \
+  if [ ! "${_BRANCH#*pico*}" = "${_BRANCH}" ] || \
      [ ! "${_BRANCH#*nano*}" = "${_BRANCH}" ]; then
     CPPFLAGS="${CPPFLAGS} -DCURL_DISABLE_ALTSVC=1"
   fi

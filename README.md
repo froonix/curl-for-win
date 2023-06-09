@@ -90,7 +90,7 @@ Features:         AsynchDNS              HSTS             HTTPS-proxy     IPv6  
 
 "fnx", like "pico" but with full TLS (OpenSSL) and HTTP/2+ support:
 Protocols:                                   http https
-Features:         AsynchDNS              HSTS HTTP2 HTTP3 HTTPS-proxy     IPv6          Largefile libz                          SSL SSPI threadsafe UnixSockets
+Features: alt-svc AsynchDNS              HSTS HTTP2 HTTP3 HTTPS-proxy     IPv6          Largefile libz                          SSL SSPI threadsafe UnixSockets
 ```
 </p></details>
 
