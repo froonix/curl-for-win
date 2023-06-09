@@ -85,8 +85,7 @@ _VER="$1"
       LDFLAGS="${LDFLAGS} -Wl,-Map,${_MAP_NAME}"
     fi
 
-    if [ ! "${_BRANCH#*fnx*}" = "${_BRANCH}" ] || \
-       [ ! "${_BRANCH#*pico*}" = "${_BRANCH}" ] || \
+    if [ ! "${_BRANCH#*pico*}" = "${_BRANCH}" ] || \
        [ ! "${_BRANCH#*nano*}" = "${_BRANCH}" ]; then
       options="${options} --disable-alt-svc"
     else
