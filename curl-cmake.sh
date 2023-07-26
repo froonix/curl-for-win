@@ -60,11 +60,11 @@ _VER="$1"
 
     if [ "${CW_MAP}" = '1' ]; then
       if [ "${pass}" = 'shared' ]; then
-        _MAP_NAME="libcurl${_CURL_DLL_SUFFIX}.map"
-        LDFLAGS_LIB="${LDFLAGS_LIB} -Wl,-Map,${_MAP_NAME}"
+        _MAP_NAME_LIB="libcurl${_CURL_DLL_SUFFIX}.map"
+        LDFLAGS_LIB="${LDFLAGS_LIB} -Wl,-Map,${_MAP_NAME_LIB}"
       else
-        _MAP_NAME='curl.map'
-        LDFLAGS_BIN="${LDFLAGS_BIN} -Wl,-Map,${_MAP_NAME}"
+        _MAP_NAME_BIN='curl.map'
+        LDFLAGS_BIN="${LDFLAGS_BIN} -Wl,-Map,${_MAP_NAME_BIN}"
       fi
     fi
 
@@ -282,8 +282,6 @@ _VER="$1"
   # options="${options} -DUSE_MANUAL=ON"
     CPPFLAGS="${CPPFLAGS} -DUSE_MANUAL=1"
 
-    options="${options} -DCURL_CA_PATH=none"
-    options="${options} -DCURL_CA_BUNDLE=none"
     if [ "${pass}" = 'shared' ]; then
       options="${options} -DBUILD_SHARED_LIBS=ON"
       options="${options} -DBUILD_CURL_EXE=OFF"
@@ -291,12 +289,6 @@ _VER="$1"
       options="${options} -DBUILD_SHARED_LIBS=OFF"
       options="${options} -DBUILD_CURL_EXE=ON"
     fi
-    options="${options} -DENABLE_THREADED_RESOLVER=ON"
-    options="${options} -DBUILD_TESTING=OFF"
-
-    options="${options} -DCURL_HIDDEN_SYMBOLS=ON"
-
-    options="${options} -DENABLE_WEBSOCKETS=ON"
 
     if [ "${CW_DEV_LLD_REPRODUCE:-}" = '1' ] && [ "${_LD}" = 'lld' ]; then
       LDFLAGS_BIN="${LDFLAGS_BIN} -Wl,--reproduce=$(pwd)/$(basename "$0" .sh)-exe.tar"
@@ -315,6 +307,12 @@ _VER="$1"
 
     # shellcheck disable=SC2086
     cmake . -B "${_BLDDIR}-${pass}" ${_CMAKE_GLOBAL} ${options} \
+      '-DCURL_CA_PATH=none' \
+      '-DCURL_CA_BUNDLE=none' \
+      '-DENABLE_THREADED_RESOLVER=ON' \
+      '-DBUILD_TESTING=OFF' \
+      '-DCURL_HIDDEN_SYMBOLS=ON' \
+      '-DENABLE_WEBSOCKETS=ON' \
       "-DCMAKE_RC_FLAGS=${_RCFLAGS_GLOBAL}" \
       "-DCMAKE_C_FLAGS=${_CFLAGS_GLOBAL_CMAKE} ${_CFLAGS_GLOBAL} ${_CPPFLAGS_GLOBAL} ${CPPFLAGS} ${_LDFLAGS_GLOBAL} ${_LIBS_GLOBAL}" \
       "-DCMAKE_C_STANDARD_LIBRARIES=${LIBS}" \
@@ -344,9 +342,9 @@ _VER="$1"
 
     if [ "${CW_MAP}" = '1' ]; then
       if [ "${pass}" = 'shared' ]; then
-        cp -p "${_BLDDIR}-${pass}/lib/${_MAP_NAME}" "${_PP}"/bin/
+        cp -p "${_BLDDIR}-${pass}/lib/${_MAP_NAME_LIB}" "${_PP}"/bin/
       else
-        cp -p "${_BLDDIR}-${pass}/src/${_MAP_NAME}" "${_PP}"/bin/
+        cp -p "${_BLDDIR}-${pass}/src/${_MAP_NAME_BIN}" "${_PP}"/bin/
       fi
     fi
   done
