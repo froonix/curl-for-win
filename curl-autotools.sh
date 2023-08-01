@@ -33,7 +33,7 @@ _VER="$1"
     export CFLAGS="${_CFLAGS_GLOBAL} -O3"
     export CPPFLAGS="${_CPPFLAGS_GLOBAL}"
     export RCFLAGS="${_RCFLAGS_GLOBAL}"
-    export LDFLAGS="${_LDFLAGS_GLOBAL} -Wl,--nxcompat -Wl,--dynamicbase"
+    export LDFLAGS="${_LDFLAGS_GLOBAL}"
     export LIBS="${_LIBS_GLOBAL}"
 
     options="${options} --enable-unix-sockets"
@@ -57,17 +57,8 @@ _VER="$1"
       fi
     fi
 
-    if [ "${_CPU}" = 'x86' ]; then
-      if [ "${pass}" = 'static' ]; then
-        LDFLAGS="${LDFLAGS} -Wl,--pic-executable,-e,_mainCRTStartup"
-      fi
-    else
-      if [ "${pass}" = 'static' ]; then
-        LDFLAGS="${LDFLAGS} -Wl,--pic-executable,-e,mainCRTStartup"
-      else
-        LDFLAGS="${LDFLAGS} -Wl,--image-base,0x150000000"
-      fi
-      LDFLAGS="${LDFLAGS} -Wl,--high-entropy-va"
+    if [ "${pass}" = 'static' ]; then
+      LDFLAGS="${LDFLAGS} ${_LDFLAGS_BIN_GLOBAL}"
     fi
 
     if [ ! "${_BRANCH#*unicode*}" = "${_BRANCH}" ]; then
@@ -194,6 +185,10 @@ _VER="$1"
       options="${options} --without-wolfssh"
       options="${options} --without-libssh"
       LIBS="${LIBS} -lbcrypt"  # for auto-detection
+
+      # Workaround for libssh2 1.11.0 regression:
+      # Omit __declspec(dllimport) with libssh2 1.11.0+ to link statically
+      [ "${LIBSSH2_VER_}" = '1.11.0' ] && CPPFLAGS="${CPPFLAGS} -DLIBSSH2_API="
     else
       options="${options} --without-wolfssh"
       options="${options} --without-libssh"

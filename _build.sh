@@ -94,11 +94,10 @@ set -o xtrace -o errexit -o nounset; [ -n "${BASH:-}${ZSH_NAME:-}" ] && set -o p
 #   - https://sourceware.org/git/binutils-gdb.git
 #   - https://github.com/netwide-assembler/nasm
 
-# Build times (2022-09-26):
-#   - gnumake:                   38 min 13 sec   2293s   100%
-#   - cmake:                     45 min 48 sec   2748s   120%   100%
-#   - autotools:                 49 min 32 sec   2972s   130%   108%
-#   - autotools w/o recv patch:  54 min  8 sec   3248s   142%   118%
+# Build times (2023-07-29):
+#   - gnumake:                   33 min 18 sec   1998s   100%
+#   - cmake with dual patch:     39 min 12 sec   2352s   118%   100%
+#   - autotools:                 41 min 40 sec   2500s   125%   106%
 
 # Supported build tools:
 #
@@ -115,7 +114,7 @@ set -o xtrace -o errexit -o nounset; [ -n "${BASH:-}${ZSH_NAME:-}" ] && set -o p
 #   nghttp2          cmake
 #   nghttp3          cmake
 #   ngtcp2           cmake
-#   wolfssl          autotools, cmake
+#   wolfssl          autotools
 #   mbedtls          cmake
 #   openssl/quictls  proprietary
 #   boringssl        cmake
@@ -532,6 +531,7 @@ build_single_target() {
   export _CXXFLAGS_GLOBAL=''
   export _RCFLAGS_GLOBAL=''
   export _LDFLAGS_GLOBAL=''
+  export _LDFLAGS_BIN_GLOBAL=''
   export _LDFLAGS_CXX_GLOBAL=''
   export _LIBS_GLOBAL=''
   export _CONFIGURE_GLOBAL=''
@@ -641,6 +641,12 @@ build_single_target() {
   else
     _CC_GLOBAL="${_CCPREFIX}gcc -static-libgcc"
     _LDFLAGS_GLOBAL="${_OPTM} ${_LDFLAGS_GLOBAL}"
+    # https://lists.ffmpeg.org/pipermail/ffmpeg-devel/2015-September/179242.html
+    if [ "${_CPU}" = 'x86' ]; then
+      _LDFLAGS_BIN_GLOBAL="${_LDFLAGS_BIN_GLOBAL} -Wl,--pic-executable,-e,_mainCRTStartup"
+    else
+      _LDFLAGS_BIN_GLOBAL="${_LDFLAGS_BIN_GLOBAL} -Wl,--pic-executable,-e,mainCRTStartup"
+    fi
     _CFLAGS_GLOBAL="${_OPTM} ${_CFLAGS_GLOBAL}"
 
     _CMAKE_GLOBAL="${_CMAKE_GLOBAL} -DCMAKE_C_COMPILER=${_CCPREFIX}gcc"

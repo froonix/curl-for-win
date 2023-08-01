@@ -31,10 +31,10 @@ _VER="$1"
   export CFLAGS="${_CFLAGS_GLOBAL} -O3 ${_CFLAGS_GLOBAL_WPICKY}"
   export CPPFLAGS="${_CPPFLAGS_GLOBAL} -DOS=\\\"${_TRIPLET}\\\""
   export RCFLAGS="${_RCFLAGS_GLOBAL}"
-  export LDFLAGS="${_LDFLAGS_GLOBAL} -Wl,--nxcompat -Wl,--dynamicbase"
+  export LDFLAGS="${_LDFLAGS_GLOBAL}"
   export LIBS="${_LIBS_GLOBAL}"
 
-  LDFLAGS_BIN=''
+  LDFLAGS_BIN="${_LDFLAGS_BIN_GLOBAL}"
   LDFLAGS_LIB=''
 
   if [ ! "${_BRANCH#*werror*}" = "${_BRANCH}" ]; then
@@ -56,14 +56,6 @@ _VER="$1"
   CPPFLAGS="${CPPFLAGS} -DCURL_STATICLIB"
 
   # CPPFLAGS added after this point only affect libcurl.
-
-  if [ "${_CPU}" = 'x86' ]; then
-    LDFLAGS_BIN="${LDFLAGS_BIN} -Wl,--pic-executable,-e,_mainCRTStartup"
-  else
-    LDFLAGS_BIN="${LDFLAGS_BIN} -Wl,--pic-executable,-e,mainCRTStartup"
-    LDFLAGS_LIB="${LDFLAGS_LIB} -Wl,--image-base,0x150000000"
-    LDFLAGS="${LDFLAGS} -Wl,--high-entropy-va"
-  fi
 
   if [ ! "${_BRANCH#*pico*}" = "${_BRANCH}" ] || \
      [ ! "${_BRANCH#*nano*}" = "${_BRANCH}" ]; then
