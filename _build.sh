@@ -43,6 +43,7 @@ set -o xtrace -o errexit -o nounset; [ -n "${BASH:-}${ZSH_NAME:-}" ] && set -o p
 #        micro      build with less features, see README.md
 #        nano       build with less features, see README.md
 #        pico       build with less features, see README.md
+#        fnx        build with less features, see README.md
 #        a64        build ARM64 target only
 #        x64        build x64 target only
 #        x86        build x86 target only
@@ -219,7 +220,9 @@ esac
 
 # Form suffix for alternate builds
 export _FLAV=''
-if [ "${_BRANCH#*pico*}" != "${_BRANCH}" ]; then
+if [ "${_BRANCH#*fnx*}" != "${_BRANCH}" ]; then
+  _FLAV='-fnx'
+elif [ "${_BRANCH#*pico*}" != "${_BRANCH}" ]; then
   _FLAV='-pico'
 elif [ "${_BRANCH#*nano*}" != "${_BRANCH}" ]; then
   _FLAV='-nano'

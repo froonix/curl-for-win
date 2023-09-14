@@ -88,7 +88,8 @@ if [ "${CURL_VER_}" = '8.2.1' ]; then
       options="${options} -DCURL_DISABLE_ALTSVC=ON"
     fi
 
-    if [ ! "${_BRANCH#*pico*}" = "${_BRANCH}" ]; then
+    if [ ! "${_BRANCH#*fnx*}" = "${_BRANCH}" ] || \
+       [ ! "${_BRANCH#*pico*}" = "${_BRANCH}" ]; then
       options="${options} -DCURL_DISABLE_CRYPTO_AUTH=ON"
       options="${options} -DCURL_DISABLE_DICT=ON -DCURL_DISABLE_FILE=ON -DCURL_DISABLE_GOPHER=ON -DCURL_DISABLE_MQTT=ON -DCURL_DISABLE_RTSP=ON -DCURL_DISABLE_SMB=ON -DCURL_DISABLE_TELNET=ON -DCURL_DISABLE_TFTP=ON"
       options="${options} -DCURL_DISABLE_FTP=ON"
@@ -264,7 +265,8 @@ if [ "${CURL_VER_}" = '8.2.1' ]; then
         LDFLAGS="${LDFLAGS} -L${_TOP}/libunistring/${_PP}/lib"
         LIBS="${LIBS} -lunistring"
       fi
-    elif [ "${_BRANCH#*pico*}" = "${_BRANCH}" ]; then
+    elif [ "${_BRANCH#*fnx*}" = "${_BRANCH}" ] && \
+         [ "${_BRANCH#*pico*}" = "${_BRANCH}" ]; then
       options="${options} -DUSE_LIBIDN2=OFF"
       options="${options} -DUSE_WIN32_IDN=ON"
     fi
@@ -398,7 +400,8 @@ else
     options="${options} -DCURL_DISABLE_ALTSVC=ON"
   fi
 
-  if [ ! "${_BRANCH#*pico*}" = "${_BRANCH}" ]; then
+  if [ ! "${_BRANCH#*fnx*}" = "${_BRANCH}" ] || \
+     [ ! "${_BRANCH#*pico*}" = "${_BRANCH}" ]; then
     options="${options} -DCURL_DISABLE_CRYPTO_AUTH=ON"
     options="${options} -DCURL_DISABLE_DICT=ON -DCURL_DISABLE_FILE=ON -DCURL_DISABLE_GOPHER=ON -DCURL_DISABLE_MQTT=ON -DCURL_DISABLE_RTSP=ON -DCURL_DISABLE_SMB=ON -DCURL_DISABLE_TELNET=ON -DCURL_DISABLE_TFTP=ON"
     options="${options} -DCURL_DISABLE_FTP=ON"
@@ -570,7 +573,8 @@ else
       LDFLAGS="${LDFLAGS} -L${_TOP}/libunistring/${_PP}/lib"
       LIBS="${LIBS} -lunistring"
     fi
-  elif [ "${_BRANCH#*pico*}" = "${_BRANCH}" ]; then
+  elif [ "${_BRANCH#*pico*}" = "${_BRANCH}" ] && \
+       [ "${_BRANCH#*pico*}" = "${_BRANCH}" ]; then
     options="${options} -DUSE_LIBIDN2=OFF"
     options="${options} -DUSE_WIN32_IDN=ON"
   fi

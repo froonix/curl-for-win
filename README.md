@@ -92,6 +92,10 @@ Features:         AsynchDNS              HSTS             HTTPS-proxy IDN IPv6 K
 "pico", HTTP/1.1-only:
 Protocols:                                   http https
 Features:         AsynchDNS              HSTS             HTTPS-proxy     IPv6          Largefile libz                          SSL SSPI threadsafe UnixSockets
+
+"fnx", like "pico" but with full TLS and HTTP/2+ support:
+Protocols:                                   http https
+Features: alt-svc AsynchDNS              HSTS HTTP2 HTTP3 HTTPS-proxy     IPv6          Largefile libz                          SSL SSPI threadsafe UnixSockets
 ```
 </p></details>
 

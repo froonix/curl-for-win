@@ -83,7 +83,8 @@ _VER="$1"
       options="${options} --enable-alt-svc"
     fi
 
-    if [ ! "${_BRANCH#*pico*}" = "${_BRANCH}" ]; then
+    if [ ! "${_BRANCH#*fnx*}" = "${_BRANCH}" ] || \
+       [ ! "${_BRANCH#*pico*}" = "${_BRANCH}" ]; then
       options="${options} --disable-crypto-auth"
       options="${options} --disable-dict --disable-file --disable-gopher --disable-mqtt --disable-rtsp --disable-smb --disable-telnet --disable-tftp"
       options="${options} --disable-ftp"
@@ -215,7 +216,8 @@ _VER="$1"
         LDFLAGS="${LDFLAGS} -L${_TOP}/libunistring/${_PP}/lib"
         LIBS="${LIBS} -lunistring"
       fi
-    elif [ "${_BRANCH#*pico*}" = "${_BRANCH}" ]; then
+    elif [ "${_BRANCH#*fnx*}" = "${_BRANCH}" ] && \
+         [ "${_BRANCH#*pico*}" = "${_BRANCH}" ]; then
       options="${options} --without-libidn2"
       options="${options} --with-winidn"
     fi
