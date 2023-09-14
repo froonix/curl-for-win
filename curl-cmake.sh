@@ -91,6 +91,7 @@ _VER="$1"
   fi
 
   if [ ! "${_CONFIG#*bldtst*}" = "${_CONFIG}" ] || \
+     [ ! "${_CONFIG#*fnx*}" = "${_CONFIG}" ] || \
      [ ! "${_CONFIG#*pico*}" = "${_CONFIG}" ]; then
     options="${options} -DCURL_DISABLE_CRYPTO_AUTH=ON"
     options="${options} -DCURL_DISABLE_DICT=ON -DCURL_DISABLE_FILE=ON -DCURL_DISABLE_GOPHER=ON -DCURL_DISABLE_MQTT=ON -DCURL_DISABLE_RTSP=ON -DCURL_DISABLE_SMB=ON -DCURL_DISABLE_TELNET=ON -DCURL_DISABLE_TFTP=ON"
@@ -299,7 +300,8 @@ _VER="$1"
   else
     options="${options} -DUSE_LIBIDN2=OFF"
     options="${options} -DCURL_USE_LIBPSL=OFF"
-    if [ "${_CONFIG#*pico*}" = "${_CONFIG}" ] && \
+    if [ "${_CONFIG#*fnx*}" = "${_CONFIG}" ] && \
+       [ "${_CONFIG#*pico*}" = "${_CONFIG}" ] && \
        [ "${_OS}" = 'win' ]; then
       options="${options} -DUSE_WIN32_IDN=ON"
     fi

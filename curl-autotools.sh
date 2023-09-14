@@ -89,6 +89,7 @@ _VER="$1"
     fi
 
     if [ ! "${_CONFIG#*bldtst*}" = "${_CONFIG}" ] || \
+       [ ! "${_CONFIG#*fnx*}" = "${_CONFIG}" ] || \
        [ ! "${_CONFIG#*pico*}" = "${_CONFIG}" ]; then
       options="${options} --disable-crypto-auth"
       options="${options} --disable-dict --disable-file --disable-gopher --disable-mqtt --disable-rtsp --disable-smb --disable-telnet --disable-tftp"
@@ -251,7 +252,8 @@ _VER="$1"
     else
       options="${options} --without-libidn2"
       options="${options} --without-libpsl"
-      if [ "${_CONFIG#*pico*}" = "${_CONFIG}" ] && \
+      if [ "${_CONFIG#*fnx*}" = "${_CONFIG}" ] && \
+         [ "${_CONFIG#*pico*}" = "${_CONFIG}" ] && \
          [ "${_OS}" = 'win' ]; then
         options="${options} --with-winidn"
       fi

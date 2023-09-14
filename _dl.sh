@@ -676,6 +676,7 @@ if [ "${_CONFIG#*nozlib*}" = "${_CONFIG}" ]; then
 fi
 
 if [ "${_CONFIG#*bldtst*}" = "${_CONFIG}" ] && \
+   [ "${_CONFIG#*fnx*}" = "${_CONFIG}" ] && \
    [ "${_CONFIG#*pico*}" = "${_CONFIG}" ] && \
    [ "${_CONFIG#*nano*}" = "${_CONFIG}" ] && \
    [ "${_CONFIG#*micro*}" = "${_CONFIG}" ] && \
@@ -775,6 +776,7 @@ if [ "${need_openssl}" = '1' ]; then
 fi
 
 if [ "${_CONFIG#*bldtst*}" = "${_CONFIG}" ] && \
+   [ "${_CONFIG#*fnx*}" = "${_CONFIG}" ] && \
    [ "${_CONFIG#*pico*}" = "${_CONFIG}" ] && \
    [ "${_CONFIG#*nano*}" = "${_CONFIG}" ] && \
    [ "${_CONFIG#*micro*}" = "${_CONFIG}" ]; then
