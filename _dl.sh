@@ -152,7 +152,7 @@ cat <<EOF
   },
   {
     "name": "libressl",
-    "url": "https://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-{ver}.tar.gz",
+    "url": "https://ftp2.eu.openbsd.org/pub/OpenBSD/LibreSSL/libressl-{ver}.tar.gz",
     "sig": ".asc",
     "keys": "A1EB079B8D3EB92B4EBD3139663AF51BD5E4D8D5"
   },
