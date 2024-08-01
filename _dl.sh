@@ -655,7 +655,7 @@ if [[ ! "${_CONFIG}" =~ (zero|nozlib) ]]; then
   fi
 fi
 
-if [[ ! "${_CONFIG}" =~ (zero|bldtst|pico|nano|micro|mini) ]]; then
+if [[ ! "${_CONFIG}" =~ (zero|bldtst|fnx|pico|nano|micro|mini) ]]; then
   if [[ "${_CONFIG}" != *'nobrotli'* ]]; then
     _DEPS+=' brotli'
   fi
@@ -704,7 +704,7 @@ if [[ ! "${_CONFIG}" =~ (zero|bldtst|pico|nano) ]]; then
   fi
 fi
 
-if [[ ! "${_CONFIG}" =~ (zero|bldtst|pico|nano|micro) ]]; then
+if [[ ! "${_CONFIG}" =~ (zero|bldtst|fnx|pico|nano|micro) ]]; then
   if [[ "${_CONFIG}" = *'libssh'* ]]; then
     _DEPS+=' libssh1'
   else

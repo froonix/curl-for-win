@@ -103,7 +103,7 @@ _VER="$1"
     options+=' -DCURL_DISABLE_HSTS=ON'
   fi
 
-  if [[ "${_CONFIG}" =~ (zero|bldtst|pico) ]]; then
+  if [[ "${_CONFIG}" =~ (zero|bldtst|fnx|pico) ]]; then
     options+=' -DCURL_DISABLE_BASIC_AUTH=ON -DCURL_DISABLE_BEARER_AUTH=ON -DCURL_DISABLE_DIGEST_AUTH=ON -DCURL_DISABLE_KERBEROS_AUTH=ON -DCURL_DISABLE_NEGOTIATE_AUTH=ON -DCURL_DISABLE_AWS=ON'
     options+=' -DCURL_DISABLE_NTLM=ON'
     options+=' -DCURL_DISABLE_DICT=ON -DCURL_DISABLE_FILE=ON -DCURL_DISABLE_GOPHER=ON -DCURL_DISABLE_MQTT=ON -DCURL_DISABLE_RTSP=ON -DCURL_DISABLE_SMB=ON -DCURL_DISABLE_TELNET=ON -DCURL_DISABLE_TFTP=ON'
@@ -309,7 +309,7 @@ _VER="$1"
   fi
 
   options+=' -DUSE_LIBIDN2=OFF'
-  if [[ ! "${_CONFIG}" =~ (pico|osnoidn) ]]; then
+  if [[ ! "${_CONFIG}" =~ (fnx|pico|osnoidn) ]]; then
     if [ "${_OS}" = 'win' ]; then
       options+=' -DUSE_WIN32_IDN=ON'
     elif [ "${_OS}" = 'mac' ]; then

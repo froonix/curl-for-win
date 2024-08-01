@@ -100,6 +100,10 @@ Features:         AsynchDNS        CAcert HSTS             HTTPS-proxy IDN IPv6 
 Protocols:                                   http https            ipfs ipns
 Features:         AsynchDNS        CAcert HSTS             HTTPS-proxy     IPv6          Largefile libz      PSL        SSL      threadsafe
 ```
+
+"fnx", like "pico" but with full TLS and HTTP/2+ support:
+Protocols:                                   http https            ipfs ipns
+Features: alt-svc AsynchDNS        CAcert HSTS HTTP2 HTTP3 HTTPS-proxy     IPv6          Largefile libz      PSL        SSL      threadsafe
 </p></details>
 
 # Downloads
